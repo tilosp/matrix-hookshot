@@ -23,6 +23,7 @@ COPY --from=builder /src/public/ /bin/matrix-hookshot/public/
 COPY --from=builder /src/package.json /bin/matrix-hookshot/
 COPY --from=builder /src/yarn.lock /bin/matrix-hookshot/
 WORKDIR /bin/matrix-hookshot
+RUN curl https://sh.rustup.rs -sSf | sh -s -- -y --profile minimal
 RUN yarn --production
 
 VOLUME /data
