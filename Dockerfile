@@ -26,6 +26,13 @@ WORKDIR /bin/matrix-hookshot
 
 RUN curl https://sh.rustup.rs -sSf | sh -s -- -y --profile minimal
 ENV PATH="/root/.cargo/bin:${PATH}"
+RUN set -ex; \
+    \
+    apt-get update; \
+    apt-get install -y --no-install-recommends \
+        cmake \
+    ; \
+    rm -rf /var/lib/apt/lists/*
 
 RUN yarn --production
 
